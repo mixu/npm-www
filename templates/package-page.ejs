@@ -19,6 +19,8 @@
       month: dlMonth
     }) %>
 
+    <div id="download-chart"></div>
+
     <table class="metadata">
       <% if (package.maintainers) { %>
       <tr>
@@ -204,5 +206,7 @@
       <% } %>
     </div>
   </div>
+
+<script src="/static/package-vis.js"></script>
 
 <%- include('footer.ejs', locals) %>

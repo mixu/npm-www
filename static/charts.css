@@ -1,12 +1,16 @@
 .axis path,
 .axis line {
   fill: none;
-  stroke: #000;
+  stroke: #5A5A5A;
   shape-rendering: crispEdges;
 }
 
-.x.axis path {
+.x.axis path, .y.axis path {
   display: none;
+}
+
+.tick {
+  fill: #5A5A5A;
 }
 
 .line {

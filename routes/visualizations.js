@@ -41,4 +41,31 @@ exports.fetchTotalDownloads = function(req, res) {
   });
 };
 
+exports.fetchPackageDownloads = function(name, req, res) {
+  var month = Date.now() - (1000 * 60 * 60 * 24 * 31) * 2,
+      end = new Date(Date.now() - 1000 * 60 * 60 * 24),
+      start = new Date(month);
 
+  var params = {
+    group_level: 2,
+    startkey: JSON.stringify([ name, day(start) ]),
+    endkey: JSON.stringify([ name, day(end) || {}])
+  };
+
+  request({
+    url: 'http://isaacs.iriscouch.com/downloads/_design/app/_view/pkg',
+    qs: params,
+    json: true
+  }, function(err, resp, body) {
+    var values = [];
+
+    body.rows.forEach(function(row) {
+      values.push({
+        date: new Date(row.key[1]).getTime(),
+        downloads: row.value
+      });
+    });
+    res.setHeader('Content-type', 'application/json');
+    res.end(JSON.stringify(values));
+  });
+};
