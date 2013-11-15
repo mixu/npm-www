@@ -27,6 +27,8 @@ router.addRoute('/doc/?', function (req, res) {
 })
 router.addRoute('/doc/*', static)
 
+router.addRoute('/vis/index-data.json', require('./routes/visualizations.js').fetchTotalDownloads);
+
 router.addRoute('/stylus/*?', require('./routes/stylus.js'))
 // legacy
 router.addRoute('/dist/*?', distRedirect)
@@ -86,7 +88,7 @@ router.addRoute('/keyword/:kw', function (q, s) {
 
 router.addRoute('/browse/*?', require('./routes/browse.js'))
 
-var ra = require('./routes/recentauthors.js') 
+var ra = require('./routes/recentauthors.js')
 router.addRoute('/recent-authors', ra)
 router.addRoute('/recent-authors/*?', ra)
 

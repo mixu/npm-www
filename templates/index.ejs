@@ -3,6 +3,8 @@
 <div id="index">
   <h1>Node Packaged Modules</h1>
 
+  <div id="download-chart"></div>
+
   <% if (totalPackages) { %>
   <p>Total Packages: <%= totalPackages %></p>
   <% } %>
@@ -121,5 +123,7 @@
   </tr>
   </table>
 </div>
+
+<script src="/static/index-vis.js"></script>
 
 <%- include('footer.ejs', locals) %>

@@ -1,0 +1,32 @@
+.axis path,
+.axis line {
+  fill: none;
+  stroke: #000;
+  shape-rendering: crispEdges;
+}
+
+.x.axis path {
+  display: none;
+}
+
+.line {
+  fill: none;
+  stroke: #cc3d33;
+  stroke-width: 1.5px;
+}
+
+.area {
+  fill: rgba(204, 61, 51, 0.5);
+  stroke: rgba(204, 61, 51, 0.5);
+  stroke-width: 1.5px;
+}
+
+.overlay {
+  fill: none;
+  pointer-events: all;
+}
+
+.focus circle {
+  fill: none;
+  stroke: #cc3d33;
+}
