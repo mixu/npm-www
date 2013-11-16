@@ -11,6 +11,15 @@
     }
   }
 
+  downloadChart({
+    url: '/vis/package/' + name,
+    margin: {top: 15, right: 40, bottom: 30, left: 65 }
+    width:
+    height:
+  });
+
+
+
   d3.json('/vis/package/' + name, function(err, data) {
     if(err) {
       return;
@@ -31,11 +40,9 @@
     var bisectDate = d3.bisector(function(d) { return d.date; }).left,
         formatValue = d3.format(",.0f");
 
-    var x = d3.time.scale()
-        .range([0, width]);
+    var x = d3.time.scale().range([0, width]);
 
-    var y = d3.scale.linear()
-        .range([height, 0]);
+    var y = d3.scale.linear().range([height, 0]);
 
     var area = d3.svg.area()
         .x(function(d) { return x(d.date); })
