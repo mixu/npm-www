@@ -29,7 +29,7 @@ router.addRoute('/doc/?', function (req, res) {
 })
 router.addRoute('/doc/*', static)
 
-router.addRoute('/vis/index-data.json', fetchTotalDownloads);
+router.addRoute('/vis/index', fetchTotalDownloads);
 router.addRoute('/vis/package/:name', function(req, res) {
   var n = req.params && req.params.name || '';
   fetchPackageDownloads(n, req, res);

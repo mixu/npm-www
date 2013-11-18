@@ -25,31 +25,6 @@ d3.jsonp = function (url, callback) {
     .attr('src', url.replace(/(\{|%7B)callback(\}|%7D)/, cb));
 };
 
-var from = new Date(Date.now() - (1000 * 60 * 60 * 24 * 31)),
-    to = new Date(new Date().getTime() - (1000 * 60 * 60 * 24 * 1.5));
-
-downloadChart({
-  url: totalDownloadsUrl(from, to),
-//  url: '/vis/index-data.json',
-  margin: {top: 5, right: 40, bottom: 30, left: 20},
-  width: 440,
-  height: 100,
-  el: '#download-chart',
-  hasYAxis: false,
-  dateKeyIndex: 0
-});
-
-downloadChart({
-  url: packageDownloadsUrl('nko', from, to),
-  margin: {top: 15, right: 40, bottom: 30, left: 65 },
-  width: 500,
-  height: 250,
-  el: '#download-chart2',
-  hasYAxis: true,
-  dateKeyIndex: 1
-});
-
-
 function day (s) {
   if (!(s instanceof Date)) {
     if (!Date.parse(s))
@@ -60,19 +35,25 @@ function day (s) {
 }
 
 function totalDownloadsUrl(from, to) {
-  return 'http://isaacs.iriscouch.com/downloads/_design/app/_view/day?' +
+  return '/vis/index';
+  /*
+  return '//isaacs.iriscouch.com/downloads/_design/app/_view/day?' +
     'group_level=1' +
     '&startkey=' + encodeURIComponent(JSON.stringify([ day(from) ])) +
     '&endkey=' + encodeURIComponent(JSON.stringify([ day(to), {} ])) +
     '&callback={callback}';
+  */
 }
 
 function packageDownloadsUrl(name, from, to) {
-  return 'http://isaacs.iriscouch.com/downloads/_design/app/_view/pkg?' +
+  return '/vis/package/'+name;
+  /*
+  return '//isaacs.iriscouch.com/downloads/_design/app/_view/pkg?' +
     'group_level=2' +
     '&startkey=' + encodeURIComponent(JSON.stringify([ name, day(from) ])) +
     '&endkey=' + encodeURIComponent(JSON.stringify([ name, day(to), {} ])) +
     '&callback={callback}';
+  */
 }
 
 function downloadChart(opts) {
